@@ -14,5 +14,6 @@ declare module 'vue' {
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTree: typeof import('element-plus/es')['ElTree']
   }
 }

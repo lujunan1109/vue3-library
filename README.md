@@ -20,3 +20,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## Link
 https://juejin.cn/post/7257144279050403896?searchId=202312110903509892F5D0AA8E0A426D56
+利用vite配置打包umd&es 模式的打包业务组件

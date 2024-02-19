@@ -7,6 +7,7 @@
         :close-on-click-modal="false"
         :close-on-press-escape="false"
         :draggable="isDraggable"
+        @close="dialogClose"
         >
       <slot name="body"></slot>
       <template #footer>
@@ -22,8 +23,19 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, useAttrs } from "vue";
+// 不让组件自动继承
+// defineOptions({
+//   inheritAttrs: false
+// })
+// 获取属性值
+const attrs = useAttrs()
+console.log(attrs, 'attrs');
 const dialogVisible = ref(false)
+
+const dialogClose = () => {
+  console.log('弹窗关闭之后的回调');
+}
 
 // 可以直接使用
 defineProps({
@@ -41,8 +53,10 @@ const visible = computed({
   }
 })
 
+// 暴露给父组件调用的属性和方法
 defineExpose({
-  dialogVisible
+  dialogVisible,
+  dialogClose
 })
 
 const emit = defineEmits(['saveSubmit'])

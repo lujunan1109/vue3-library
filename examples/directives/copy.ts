@@ -1,8 +1,4 @@
-export const copy = {
-  beforeMount(el, binding) {
-     // 将要复制的内容当作全局变量存储
-     el.copyContent = binding.value;
-     el.addEventListener('click', () => {
+const copyHandle = (el) => () => {
        if (!el.copyContent) {
          return console.warn('没有要复制的内容！！！');
        }
@@ -23,7 +19,14 @@ export const copy = {
        }
        // 移除textarea标签
        document.body.removeChild(textarea);
-     })
+     }
+
+
+export const copy = {
+  beforeMount(el, binding) {
+     // 将要复制的内容当作全局变量存储
+     el.copyContent = binding.value;
+     el.addEventListener('click', copyHandle(el))
    },
    updated(el, binding) {
      // 内容更新时及时更新全局变量的值
@@ -31,7 +34,7 @@ export const copy = {
    },
    unmounted(el) {
      // 元素移除时卸载点击事件监听
-     el.removeEventListener('click', () => {})
+     el.removeEventListener('click', copyHandle)
    }
  }
  

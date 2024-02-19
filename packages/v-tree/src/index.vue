@@ -4,23 +4,21 @@
     v-bind="$attrs"
     :data="treeData"
     :show-checkbox="showCheckBox"
-    node-key="id"
+    :node-key="nodeKey"
     :default-checked-keys="defaultKeys"
     :props="defaultProps"
   />
 </template>
 <script setup lang='ts'>
 import { ref, onMounted } from 'vue';
-import {TreeDataType} from './type';
-const defaultProps = {
-  children: 'children',
-  label: 'label',
-}
+import {TreeDataType, DefaultPropsType} from './type';
 
 withDefaults(defineProps<{
+  nodeKey: string,
   showCheckBox: boolean,
   treeData: TreeDataType[],
   defaultKeys: number[],
+  defaultProps: DefaultPropsType,
 }>(), {
   treeData: () => [
     {
@@ -35,7 +33,12 @@ withDefaults(defineProps<{
     }
   ],
   defaultKeys: () => [],
-  showCheckBox: false
+  showCheckBox: false,
+  defaultProps: () => ({
+    children: 'children',
+    label: 'label'
+  }),
+  nodeKey: 'id'
 })
 
 // 接收子组件的ref

@@ -1,21 +1,24 @@
 // 导入单个组件
-import vButton from './v-button/index'
-import vDialog from './v-dialog/index'
-import vForm from './v-form/index'
-import vTable from './v-table/index'
+import vButton from './v-button'
+import vDialog from './v-dialog'
+import vForm from './v-form'
+import vTable from './v-table'
+import vTree from './v-tree'
 // 以数组的结构保存组件，便于遍历
 const components = [
   vButton,
   vDialog,
   vForm,
-  vTable
+  vTable,
+  vTree
 ]
 // 用于按需导入
 export {
   vButton,
   vDialog,
   vForm,
-  vTable
+  vTable,
+  vTree
 }
 // 定义 install 方法
 const install = function (Vue: any) {

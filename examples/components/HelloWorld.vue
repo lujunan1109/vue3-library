@@ -1,13 +1,19 @@
 <template>
   <!-- 按钮组件示例 -->
-      <el-button 
+      <div class="test-comp-model">
+        <el-button 
       v-copy="12123123123" 
       v-debounce="handletest"
       >点击复制</el-button>
       <el-button v-throttle:1000="handletest">点击测试节流</el-button>
+      </div>
     <!-- 弹窗示例 -->
-  <VDialog 
+  <div class="test-comp-model">
+  <v-button type="primary" @click="open">打开弹窗</v-button>
+
+    <v-dialog 
         title="标题"
+        test="123123"
         ref="dialogRef"
         v-model="dialogVisible"
         :dialogType="'readonlyDialog'"
@@ -23,9 +29,11 @@
       弹窗自定义底部
     </div>
   </template>
-  </VDialog>
+  </v-dialog>
+  </div>
   <!-- 表单示例 -->
-  <VForm 
+ <div class="test-comp-model">
+  <v-form 
   :formOptions="formOptions"
   :rules="rules"
   :ruleForm="ruleForm"
@@ -38,10 +46,11 @@
     <template #childSlot="{ label }">
       {{ label }}
     </template>
-  </VForm>
-  <div style="width: 800px;">
+  </v-form>
+ </div>
+  <div style="width: 800px;" class="test-comp-model">
     <!-- 表格示例 -->
-    <VTable 
+    <v-table 
     :columns="columns" 
     border 
     stripe 
@@ -62,24 +71,20 @@
         <el-button link type="primary" size="small">Edit</el-button>
       </template>
     </el-table-column>
-  </VTable>
-  <vButton @click="open">打开弹窗</vButton>
+  </v-table>
   </div>
 </template>
 
 
 <script setup lang="ts">
 
-import { ref, reactive, nextTick, onMounted } from 'vue'
-
-import VDialog from '../../packages/v-dialog/src/index.vue'
-import VForm from '../../packages/v-form/src/index.vue'
-import VTable from '../../packages/v-table/src/index.vue'
-import { vButton } from '../../dist/vue3-library.es.js'
+import { ref, reactive, onMounted } from 'vue'
+// ESM方式引入
+import { vButton, vTable, vForm, vDialog } from '../../dist/vue3-library.es.js'
+import '../../dist/style.css'
 
 import type { FormInstance, FormItemRule } from 'element-plus'
 import { Arrayable, FormOptionType } from '../../packages/v-form/src/type'
-
 
 defineProps<{ msg: string, }>()
 
@@ -91,6 +96,7 @@ const saveSubmit = () => {
 }
 
 const open = () => {
+  console.log(dialogRef, 'dialogRef');
   dialogRef.value.dialogVisible = true
 }
 
@@ -312,5 +318,9 @@ const handletest = () => {
 
 .left-auto {
   margin-left: auto;
+}
+
+.test-comp-model {
+  padding: 30px 0;
 }
 </style>
